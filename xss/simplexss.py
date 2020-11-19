@@ -4,7 +4,7 @@ import random
 
 def page_not_found(e):
     response=e.get_response()
-    response.content_type="application/json"
+    #response.content_type="application/json"
     if request.cookies.get('cookie')==None:
         cookie=str(random.randint(1000, 9999))
         response.set_cookie('cookie', cookie, httponly=True)

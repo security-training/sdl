@@ -26,7 +26,7 @@ def login():
     response.set_cookie('cookie', cookie)
     return response
 
-@app.route('/users/<user>/secrets')
+@app.route('/users/<user>/internal')
 @auth.login_required
 def handle(user):
     return "here are your secrets, {}: CREDIT CARD: 5243-3213-5455-{} cvv: 777".format(user, user)
