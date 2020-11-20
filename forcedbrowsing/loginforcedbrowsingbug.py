@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, redirect
 from flask_httpauth import HTTPBasicAuth # https://flask-httpauth.readthedocs.io/en/latest/
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
@@ -7,7 +7,7 @@ import random
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 users = {
-    "tal": generate_password_hash("tal123"),
+    "john": generate_password_hash("bryce"),
     "moshe": generate_password_hash("moshe123")
 }
 
@@ -22,9 +22,14 @@ def verify_password(username, password):
 @auth.login_required
 def login():
     cookie=str(random.randint(1000, 9999))
-    response=make_response("welcome")
+    response=make_response(redirect("/users/{}/public".format(auth.current_user())))
     response.set_cookie('cookie', cookie)
     return response
+
+@app.route('/users/<user>/public')
+def public(user):
+    print(user)
+    return "<h1>this is your public profile <img src=internal/profile.png>"
 
 @app.route('/users/<user>/internal')
 @auth.login_required

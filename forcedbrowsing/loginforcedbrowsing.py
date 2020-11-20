@@ -27,7 +27,6 @@ def login():
     response=make_response("welcome <img src=public/logo.png>")
     response.set_cookie('cookie', cookie)
     return redirect("/users/{}/public".format(auth.current_user()))
-    #return response
 
 @app.route('/users/<user>/public')
 def public(user):
