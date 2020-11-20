@@ -18,8 +18,8 @@ def createuser(user):
         response=make_response("hello {}".format(user))
         response.set_cookie('cookie', cookie)
         conn=sqlite3.connect('users.db')
-        q="insert into users (username, cookie) values ('{}', '{}');".format(user, cookie)
-        conn.execute(q)
+        q="insert into users (username, cookie) values (?, ?);"
+        conn.execute(q, (user, cookie))
         conn.commit()
         return response
     except Exception as e:

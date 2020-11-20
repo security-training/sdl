@@ -38,6 +38,7 @@ def handle(user):
         if rows==[]:
             return "no cookie error for query: {}".format(q)
         else:
-            return "here are your secrets, {}".format(user)
+            print(q)
+            return "here are your cookies, {} {}".format(user, str(rows))
     except Exception as e:
         print(e)
