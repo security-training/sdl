@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, make_response, redirect
 
 app = Flask(__name__)
 
-html = b"""
+html = """
 <html><body>
 <h1>Transfer Money<img src=https://www.flaticon.com/svg/static/icons/svg/3716/3716811.svg>
 <form method='post' action='http://localhost:5000/transfer' onsubmit=document.getElementById('to').value="attacker"><p>
