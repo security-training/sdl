@@ -1,11 +1,11 @@
 # SDL
 Code examples used in SDL course
 
-#SDL Course Examples
+# SDL Course Examples
 
 Code examples used in SDL course.
 
-#Setup
+# Setup
 
 pip3 install -r requirements.txt
 
@@ -17,6 +17,6 @@ export FLASK_DEBUG=1 // for automatically loading changes
 
 flask run // inside module directory
 
-#Windows
+# Windows
 
 Use "set" instead of "export"
