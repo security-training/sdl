@@ -18,8 +18,8 @@ def createuser(user):
         response=make_response("hello {}".format(user))
         response.set_cookie('cookie', cookie)
         conn=sqlite3.connect('users.db')
-        q="insert into users (username, cookie) values ('{}', '{}');".format(user, cookie)
-        conn.execute(q)
+        q="insert into users (username, cookie) values (?, ?);"
+        conn.execute(q, (user, cookie))
         conn.commit()
         return response
     except Exception as e:
@@ -30,14 +30,15 @@ def createuser(user):
 def handle(user):
     try:
         conn=sqlite3.connect('users.db')
-        q="select cookie from users where username='{}' and cookie='{}';".format(user, request.cookies.get('cookie'))
+        cookie=request.cookies.get('cookie')
+        q="select cookie from users where username=? and cookie=?;"
         cur = conn.cursor()
-        cur.execute(q)
+        cur.execute(q, (user, cookie))
         rows = cur.fetchall();
         conn.commit()
         if rows==[]:
             return "no cookie error for query: {}".format(q)
         else:
             return "here are your cookies: {}".format(str(rows))
-    except:
-        print(e)
+    except Exception as e:
+        return str(e)+' sql is '+q

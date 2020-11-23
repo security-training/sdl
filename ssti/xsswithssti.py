@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, make_response
 import sqlite3
 import random
+import jinja2
 
 try:
     conn=sqlite3.connect('users.db')
@@ -15,30 +16,36 @@ app = Flask(__name__)
 def createuser(user):
     try:
         cookie=str(random.randint(1000, 9999))
-        response=make_response("hello {}".format(user))
+        tu = jinja2.Template('{{user|e}}')
+        encodeduser=tu.render(user=user)
+        response=make_response("hello {}".format(encodeduser))
         response.set_cookie('cookie', cookie)
         conn=sqlite3.connect('users.db')
-        q="insert into users (username, cookie) values (?, ?);"
-        conn.execute(q, (user, cookie))
+        tc = jinja2.Template('{{cookie|e}}')
+        encodedcookie=tc.render(cookie=user+" "+cookie)
+        print(tc)
+        q="insert into users (username, cookie) values ('{}', '{}');".format(encodeduser, encodedcookie)
+        conn.execute(q)
         conn.commit()
         return response
     except Exception as e:
         print(e)
 
 
-@app.route('/users/<user>')
-def handle(user):
+@app.route('/users')
+def handle():
     try:
         conn=sqlite3.connect('users.db')
-        cookie=request.cookies.get('cookie')
-        q="select cookie from users where username=? and cookie=?;"
+        q="select * from users"
         cur = conn.cursor()
-        cur.execute(q, (user, cookie))
+        cur.execute(q)
         rows = cur.fetchall();
         conn.commit()
         if rows==[]:
-            return "no cookie error for query: {}".format(q)
+            return "no users"
         else:
-            return "here are your cookies: {}".format(str(rows))
+            tr=jinja2.Template('{{rows|e}}')
+            encodedrows=tr.render(rows=rows)
+            return str(rows)
     except Exception as e:
-        return str(e)
+        print(e)

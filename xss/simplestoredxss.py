@@ -16,7 +16,7 @@ def createuser(user):
     try:
         cookie=str(random.randint(1000, 9999))
         response=make_response("hello {}".format(user))
-        response.set_cookie('cookie', cookie)
+        response.set_cookie('cookie-{}'.format(user), cookie, httponly=True)
         conn=sqlite3.connect('users.db')
         q="insert into users (username, cookie) values ('{}', '{}');".format(user, cookie)
         print(q)
@@ -31,7 +31,7 @@ def createuser(user):
 def handle():
     try:
         conn=sqlite3.connect('users.db')
-        q="select * from users"
+        q="select username from users"
         cur = conn.cursor()
         cur.execute(q)
         rows = cur.fetchall();
