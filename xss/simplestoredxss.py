@@ -16,7 +16,7 @@ def createuser(user):
     try:
         cookie=str(random.randint(1000, 9999))
         response=make_response("hello {}".format(user))
-        response.set_cookie('cookie-{}'.format(user), cookie, httponly=True)
+        response.set_cookie('cookie-{}'.format(user), cookie)
         conn=sqlite3.connect('users.db')
         q="insert into users (username, cookie) values ('{}', '{}');".format(user, cookie)
         print(q)
@@ -24,7 +24,7 @@ def createuser(user):
         conn.commit()
         return response
     except Exception as e:
-        print(e)
+        return str(e)
 
 
 @app.route('/users')

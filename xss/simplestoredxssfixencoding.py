@@ -45,6 +45,7 @@ def handle():
         else:
             tr=jinja2.Template('{{rows|e}}')
             encodedrows=tr.render(rows=rows)
-            return str(rows)
+            print(encodedrows)
+            return encodedrows
     except Exception as e:
         print(e)
