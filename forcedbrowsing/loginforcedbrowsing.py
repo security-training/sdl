@@ -9,7 +9,7 @@ auth = HTTPBasicAuth()
 app = Flask(__name__)
 
 users = {
-    "john": generate_password_hash("bryce"),
+    "john": generate_password_hash("bryce1"),
     "moshe": generate_password_hash("moshe123")
 }
 
@@ -24,9 +24,9 @@ def verify_password(username, password):
 @auth.login_required
 def login():
     cookie=str(random.randint(1000, 9999))
-    response=make_response("welcome <img src=public/logo.png>")
+    response=make_response(redirect("/users/{}/public".format(auth.current_user())))
     response.set_cookie('cookie', cookie)
-    return redirect("/users/{}/public".format(auth.current_user()))
+    return response
 
 @app.route('/users/<user>/public')
 def public(user):
@@ -35,4 +35,4 @@ def public(user):
 
 @app.route('/users/<user>/internal')
 def internal(user):
-    return "here are your secrets, {}: CREDIT CARD: 5243-3213-5455-{} cvv: 777".format(user, user)
+    return "here are your secrets, {}: CREDIT CARD: {}-3213-5455-{} cvv: 777".format(user, str(random.randint(1000, 9999)), user)
