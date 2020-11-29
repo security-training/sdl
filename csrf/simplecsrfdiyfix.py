@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, make_response, redirect
 from flask_httpauth import HTTPBasicAuth
+import sys
+sys.path.append('C:\\Users\\tal\\Documents\\courses\\matrix\\sdl\\')
 import sdlutils.sdlauth as myauth
 import os
 

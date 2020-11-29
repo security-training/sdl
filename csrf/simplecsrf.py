@@ -1,11 +1,10 @@
 from flask_httpauth import HTTPBasicAuth
 from flask import Flask, render_template, request, make_response, redirect
 import sys
-import sdlutils.auth as myauth
+sys.path.append('C:\\Users\\tal\\Documents\\courses\\matrix\\sdl\\')
+import sdlutils.sdlauth as myauth
 
 app = Flask(__name__)
-
-import sdlutils.auth
 
 auth = HTTPBasicAuth()
 
@@ -25,10 +24,18 @@ To:<input name='to'>
 </body></html>
 """
 
+@app.route('/')
+@auth.login_required
+def r():
+    response=make_response(redirect("/"))
+    return response
+
+
 @app.route('/login')
 @auth.login_required
 def mylogin():
-    return myauth.login("/transfer")
+    response=make_response(redirect("/transfer"))
+    return myauth.login(response)
 
 @auth.login_required
 @app.route('/transfer', methods=['GET'])
@@ -40,6 +47,3 @@ def csrf():
 def process():
     dest=request.form["to"]
     return "money transferred to {}".format(dest)
-
-
-#https://github.com/payloadbox/xxe-injection-payload-list

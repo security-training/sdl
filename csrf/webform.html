@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>
+	Manage Account - My ASP.NET Application
+</title><script src="/Scripts/modernizr-2.6.2.js"></script>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/Site.css" rel="stylesheet"/>
+<link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" /></head>
+<body>
+    <form method="post" action="./Manage" onsubmit="javascript:return WebForm_OnSubmit();" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="RMV17AJCefFAriPKp+TsjVN9ctUgyUGmzn4FrOh3lcyBYUk0CnwVij7jCstbScUgbkzGZkuyaaxcE8rRaQe0JOXiB6H5jWTqp8nlBc6ItqKEsyI1QC428+CVhYDE/ztiwXmeS0nSx6qKGiPywq5tiBH/AkWf4ofb9AXUkV1lHhiUzDXg+a34siW+wjgmuU9KhjZVLYiL4Ld19LNExd07HePYEbap2x44Ujl8A8bcWRXuqv4P6GboFIJ/zkqES6FI1ns2jXQ+3ozXX8NlPSG1tnj2aFLarDbuxD7bX5k2eFhZuEZoVsaOMFU+Z1auAqtaZB/dB4zrFCJqT+YMWJcErQkMxtPr2KATj0sjpGPVu5n9wJExOAPyx7TJPv6YNcOlVjJKc9ynDgLOrmr2BIuMld7+zOp1wubsxDJCowevUx+LugQXkuzVc0UoBpsjje3WuuPL/pJepkX0WBNOahs5dPnfk2J5dP8x6TofMbTp4o3S+pFUwZLaPRLm+vqRTWSaeYx79C/BcFc2lDOv3i30/EFNT8P4LPdd7NeLAx6YNnYDfNT9g1fFl1z4pBD1EbG//BbpXoCdXLd5e8iXvyW0k5kE8UdV6e3BukvRUeS4UY7era5ZcZWV2kX/kPWOONKd" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+
+<script src="/bundles/MsAjaxJs?v=c42ygB2U07n37m_Sfa8ZbLGVu4Rr2gsBo7MvUEnJeZ81" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="../Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="../Scripts/bootstrap.js" type="text/javascript"></script>
+<script src="../Scripts/respond.js" type="text/javascript"></script>
+<script src="/bundles/WebFormsJs?v=AAyiAYwMfvmwjNSBfIMrBAqfU5exDukMVhrRuZ-PDU01" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl08', 'ctl01', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="../" class="navbar-brand">Application name</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../About">About</a></li>
+                        <li><a href="../Contact">Contact</a></li>
+                    </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="Manage" title="Manage your account">Hello, tal!</a></li>
+                                <li>
+                                    <a href="javascript:__doPostBack(&#39;ctl00$ctl13$ctl02$ctl00&#39;,&#39;&#39;)">Log off</a>
+                                </li>
+                            </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+
+    <h2>Manage Account.</h2>
+
+    <div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section id="passwordForm">
+
+
+
+                    <p>You're logged in as <strong>tal</strong>.</p>
+                    <div class="form-horizontal">
+                        <h4>Change Password Form</h4>
+                        <div id="MainContent_ctl10" class="text-danger" data-valsummary="true" style="display:none;">
+
+</div>
+                        <div class="form-group">
+                            <label for="MainContent_CurrentPassword" id="MainContent_CurrentPasswordLabel" class="col-md-2 control-label">Current password</label>
+                            <div class="col-md-10">
+                                <input name="ctl00$MainContent$CurrentPassword" type="password" id="MainContent_CurrentPassword" class="form-control" /><span data-val-controltovalidate="MainContent_CurrentPassword" data-val-errormessage="The current password field is required." data-val-validationGroup="ChangePassword" id="MainContent_ctl11" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="visibility:hidden;">The current password field is required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="MainContent_NewPassword" id="MainContent_NewPasswordLabel" class="col-md-2 control-label">New password</label>
+                            <div class="col-md-10">
+                                <input name="ctl00$MainContent$NewPassword" type="password" id="MainContent_NewPassword" class="form-control" /><span data-val-controltovalidate="MainContent_NewPassword" data-val-errormessage="The new password is required." data-val-validationGroup="ChangePassword" id="MainContent_ctl12" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="visibility:hidden;">The new password is required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="MainContent_ConfirmNewPassword" id="MainContent_ConfirmNewPasswordLabel" class="col-md-2 control-label">Confirm new password</label>
+                            <div class="col-md-10">
+                                <input name="ctl00$MainContent$ConfirmNewPassword" type="password" id="MainContent_ConfirmNewPassword" class="form-control" /><span data-val-controltovalidate="MainContent_ConfirmNewPassword" data-val-errormessage="Confirm new password is required." data-val-display="Dynamic" data-val-validationGroup="ChangePassword" id="MainContent_ctl13" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="display:none;">Confirm new password is required.</span><span data-val-controltovalidate="MainContent_ConfirmNewPassword" data-val-errormessage="The new password and confirmation password do not match." data-val-display="Dynamic" data-val-validationGroup="ChangePassword" id="MainContent_ctl14" class="text-danger" data-val="true" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-controltocompare="MainContent_NewPassword" data-val-controlhookup="MainContent_NewPassword" style="display:none;">The new password and confirmation password do not match.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" name="ctl00$MainContent$ctl15" value="Change password" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$MainContent$ctl15&quot;, &quot;&quot;, true, &quot;ChangePassword&quot;, &quot;&quot;, false, false))" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+
+            <section id="externalLoginsForm">
+
+
+
+
+
+<div id="socialLoginList">
+    <h4>Use another service to log in.</h4>
+    <hr />
+
+            <div>
+                <p>There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=252803">this article</a> for details on setting up this ASP.NET application to support logging in via external services.</p>
+            </div>
+
+</div>
+            </section>
+
+        </div>
+    </div>
+
+
+            <hr />
+            <footer>
+                <p>&copy; 2020 - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="417C5C3E" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Okhcr/Fp6xc95D/nzLwqpC8DZ8xcVQIO98Ea6kJ7GCygFJL109abDVQEs/korPDzANAHzqnAeBa1Jp8IGcAh5022PNCtC2/TAQ3lpjg6h5aq/0ZP/R5Uxa9dSQ4ovJl59xXAMumYWWhYS4N66+s5uYKHRNA66QHuPwIYh3Nr54/XbVXEQ4JniYXkGex92Nqw2Mmw++rguFlN+vQzttA9gQ==" />
+</div></form>
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Firefox","requestId":"462b1d69160f405c96fdd8623b3fa0cc"}
+</script>
+<script type="text/javascript" src="http://localhost:21167/8d3ac9b331e74f56aa6e6176dc2be212/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+</body>
+</html>
