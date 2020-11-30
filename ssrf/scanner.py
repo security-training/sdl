@@ -4,10 +4,12 @@ import time
 
 def scan(url, num):
     url = url.format(num)
-    print("testing {}".format(url))
     try:
         r=requests.get(url)
-        print(r.status_code)
+        if r.text.find('bad')>-1:
+            pass
+        else:
+            print(url+": "+r.text[:100])
     except:
         pass
 
