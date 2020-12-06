@@ -1,18 +1,22 @@
 from flask_httpauth import HTTPBasicAuth
 from flask import Flask, render_template, request, make_response, redirect
-import sys
-import os
-sys.path.append(os.getcwd())
-import sdlutils.sdlauth as myauth
+from random import randint
 
 app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
+users = {
+    "john": "bryce"
+}
+
 @auth.verify_password
 def verify_password(username, password):
-    if (myauth.verify_password(username, password)):
+    if (username, password) == ('', ''):
+        return False
+    if users[username]==password:
         return True
+    return False
 
 html = b"""
 <html><body>
@@ -28,23 +32,24 @@ To:<input name='to'>
 @app.route('/')
 @auth.login_required
 def r():
-    response=make_response(redirect("/"))
+    response=make_response(redirect("/login"))
     return response
-
 
 @app.route('/login')
 @auth.login_required
-def mylogin():
+def login():
     response=make_response(redirect("/transfer"))
-    return myauth.login(response)
+    cookie=str(randint(1000, 9999))
+    response.set_cookie('cookie', cookie)
+    return response
 
-@auth.login_required
 @app.route('/transfer', methods=['GET'])
+@auth.login_required
 def csrf():
     return html
 
-@auth.login_required
 @app.route('/transfer', methods=['POST'])
+@auth.login_required
 def process():
     dest=request.form["to"]
     return "money transferred to {}".format(dest)

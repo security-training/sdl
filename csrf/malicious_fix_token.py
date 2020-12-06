@@ -21,6 +21,7 @@ def get_token():
     page=requests.get("http://localhost:5000/transfer")
     tree = html.fromstring(page.content)
     token=dict(tree.forms[0].inputs.items())["csrf_token"].value
+    print("got token: "+token)
     return content.format(token)
 
 @app.route('/transfer', methods=['GET'])

