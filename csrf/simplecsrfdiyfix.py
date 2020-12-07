@@ -56,7 +56,7 @@ def login():
 @app.route('/transfer', methods=['GET'])
 def anti_csrf():
     global csrf_token
-    csrf_token=os.urandom(32).hex()
+    csrf_token=os.urandom(4).hex()
     return secure_form(csrf_token)
 
 @auth.login_required

@@ -7,10 +7,12 @@ app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
+salt="hjf8764"
+
 # I don't want to put my password in github...
 
 users = {
-    "john":  '9e02d06dd535a7663c0eb74ffe3c634122a35fb93707b31702cc33a5ef0b7b31'
+    "john":  'efa3f0e468054ebcade595b58da749bff2cc4d2a54f841bf536cbb5796073b53'
 }
 
 @auth.verify_password
@@ -18,8 +20,8 @@ def verify_password(username, password):
     if (username, password) == ('', ''):
         return False
     print(users[username])
-    print(hashlib.sha256(bytes(password, 'utf-8')).hexdigest())
-    if users[username]==hashlib.sha256(bytes(password, 'utf-8')).hexdigest():
+    print(hashlib.sha256(bytes(password+salt, 'utf-8')).hexdigest())
+    if users[username]==hashlib.sha256(bytes(password+salt, 'utf-8')).hexdigest():
         return True
     return False
 
