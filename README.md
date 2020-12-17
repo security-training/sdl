@@ -1,16 +1,16 @@
-# SDL Course Examples
+# SDL Course Examples קורס פיתוח מאובטח והאקינג
 
-Code examples used in SDL course.
+Code examples used in SDL course. קוד ותרגילים לקורס
 
-# Setup
+# Setup התקנה
 
 pip3 install -r requirements.txt
 
 export FLASK_APP=<script>.py
 
-export FLASK_DEBUG=1 // for automatically loading changes
+export FLASK_DEBUG=1 // for automatically loading changes לטעינה אוטומטית של שינויים
 
-flask run // inside module directory
+flask run // inside module directory בתוך התיקיה של המודול
 
 # Windows
 
