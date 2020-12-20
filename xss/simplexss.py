@@ -7,7 +7,7 @@ def page_not_found(e):
     #response.content_type="application/json"
     if request.cookies.get('cookie')==None:
         cookie=str(random.randint(1000, 9999))
-        response.set_cookie('cookie', cookie, httponly=True)
+        response.set_cookie('cookie', cookie) #, httponly=True)
     else:
         cookie=request.cookies.get('cookie')
     response.data='the {} does not exist'.format(urllib.parse.unquote(request.url))
