@@ -9,10 +9,6 @@ app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
-@auth.verify_password
-def verify_password(username, password):
-    if (myauth.verify_password(username, password)):
-        return True
 
 html = b"""
 <html><body>
