@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
+<<<<<<< HEAD
+=======
 users = {
     "john": "bryce"
 }
@@ -17,6 +19,7 @@ def verify_password(username, password):
     if users[username]==password:
         return True
     return False
+>>>>>>> 9775193b84a69e2244959189bc2c61ef1a764482
 
 html = b"""
 <html><body>
