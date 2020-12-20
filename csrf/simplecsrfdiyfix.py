@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect
 from flask_httpauth import HTTPBasicAuth
-import sys
-sys.path.append(os.getcwd())
-import sdlutils.sdlauth as myauth
+from random import randint
 import os
 
 app = Flask(__name__)
@@ -11,10 +9,17 @@ app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
+users = {
+    "john": "bryce"
+}
+
 @auth.verify_password
 def verify_password(username, password):
-    if (myauth.verify_password(username, password)):
+    if (username, password) == ('', ''):
+        return False
+    if users[username]==password:
         return True
+    return False
 
 csrf_token=""
 
@@ -32,17 +37,26 @@ def secure_form(csrf_token):
     """.format(csrf_token)
     return html
 
+@app.route('/')
+@auth.login_required
+def r():
+    response=make_response(redirect("/login"))
+    return response
+
 @app.route('/login')
 @auth.login_required
-def mylogin():
+def login():
     response=make_response(redirect("/transfer"))
-    return myauth.login(response)
+    cookie=str(randint(1000, 9999))
+    response.set_cookie('cookie', cookie)
+    return response
+
 
 @auth.login_required
 @app.route('/transfer', methods=['GET'])
 def anti_csrf():
     global csrf_token
-    csrf_token=os.urandom(32).hex()
+    csrf_token=os.urandom(4).hex()
     return secure_form(csrf_token)
 
 @auth.login_required
@@ -53,8 +67,8 @@ def transfer():
     except:
         return "bad token"
     global csrf_token
-    print(user_csrf_token)
-    print(csrf_token)
+    print("token from request: "+user_csrf_token)
+    print("token from memory: "  +csrf_token)
     if user_csrf_token==csrf_token:
         dest=request.form["to"]
         return "money transferred to {}".format(dest)

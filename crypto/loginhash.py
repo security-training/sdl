@@ -1,29 +1,32 @@
 from flask_httpauth import HTTPBasicAuth
 from flask import Flask, render_template, request, make_response, redirect
 from random import randint
+import hashlib
 
 app = Flask(__name__)
 
 auth = HTTPBasicAuth()
 
-<<<<<<< HEAD
-=======
+# I don't want to put my password in github...
+
 users = {
-    "john": "bryce"
+    "john":  '9e02d06dd535a7663c0eb74ffe3c634122a35fb93707b31702cc33a5ef0b7b31'
 }
 
 @auth.verify_password
 def verify_password(username, password):
     if (username, password) == ('', ''):
         return False
-    if users[username]==password:
+    print(users[username])
+    print(hashlib.sha256(bytes(password, 'utf-8')).hexdigest())
+    if users[username]==hashlib.sha256(bytes(password, 'utf-8')).hexdigest():
         return True
     return False
->>>>>>> 9775193b84a69e2244959189bc2c61ef1a764482
 
 html = b"""
 <html><body>
 <h1>Transfer Money<img src=https://www.flaticon.com/svg/static/icons/svg/3716/3716811.svg>
+<h2>More Secure!
 <form method='post' action='transfer'><p>
 Amount:<input name='amount'><p>
 To:<input name='to'>

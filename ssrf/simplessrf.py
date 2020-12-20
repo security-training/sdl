@@ -20,7 +20,7 @@ def d1():
     else:
         url=request.args.get("url")
         try:
-            r=requests.get("{}".format(url), headers={'Authentication':'TOPSECRET'})
+            r=requests.get("{}".format(url), headers={'Authorization':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwZW50YWdvbiIsImlhdCI6MTYwNzI3Mjc4MCwiZXhwIjoxNjM4ODA4NzgwLCJhdWQiOiJ3d3cucGVudGFnb24ubWlsIiwic3ViIjoiYWRtaW5AcGVudGFnb24ubWlsIiwiYWRtaW4iOiJ0cnVlIiwiU3VybmFtZSI6Ik1hc3RlciIsIkVtYWlsIjoiYWRtaW5AcGVudGFnb24ubWlsIiwiUm9sZSI6WyJNYW5hZ2VyIiwiUHJvamVjdCBBZG1pbmlzdHJhdG9yIl19.7RvPRcCk8Lu-QbQo5vhN82dG6oUMlJyoTRDIErWP9jI'})
             return r.text
         except:
             return "bad request connection refused from interface: eth0: 192.168.1.0/24"

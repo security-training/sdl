@@ -1,6 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect
 import requests
-import time
 from lxml import html
 
 token=""
@@ -15,7 +13,6 @@ def start_token():
         token=page.headers["Set-Cookie"].split(';')[0].split('=')[1]
         print("got token {}".format(token))
         file.write(token+'\r\n')
-        #time.sleep(0.2)
 
 def main():
     start_token()
