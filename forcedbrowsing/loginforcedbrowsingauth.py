@@ -25,7 +25,9 @@ def verify_password(username, password):
 def login():
     cookie=str(random.randint(1000, 9999))
     response=make_response(redirect("/users/{}/public".format(auth.current_user())))
-    response.set_cookie('cookie', cookie)
+    response.set_cookie('{}-cookie'.format(auth.current_user()), cookie)
+    global users
+    users.update({'{}-cookie'.format(auth.current_user()):cookie})
     return response
 
 
@@ -40,9 +42,15 @@ def public(user):
     return "<body bgcolor=rgb({},{},{}) dir='rtl'><h1><font color='white'> הפרופיל של {} <img src=../{}/internal/profile.png><p><h3> {} ".format(random.randint(0, 255),random.randint(0, 255),random.randint(0, 255),user,user,line)
 
 @app.route('/users/<user>/internal')
+@auth.login_required
 def internal(user):
-    return "<body bgcolor=red dir='rtl'><b><code>מידע סודי לעיניך בלבד {}<br>----------------------------------------------<p>פרטי כרטיס אשראי {}:<p> {}-3213-5455-{} cvv: 777".format(user, user, str(random.randint(1000, 9999)),str(random.randint(1000, 9999)) )
+    cookie=request.cookies.get('{}-cookie'.format(user))
+    if (cookie!=None) and users.get(user+'-cookie')==cookie:
+        return "<body bgcolor=red dir='rtl'><b><code>מידע סודי לעיניך בלבד {}<br>----------------------------------------------<p>פרטי כרטיס אשראי {}:<p> {}-3213-5455-{} cvv: 777".format(user, user, str(random.randint(1000, 9999)),str(random.randint(1000, 9999)) )
+    else:
+        return "problem with cookie, please log in"
 
 @app.route('/users/<user>/internal/profile.png')
+@auth.login_required
 def pic(user):
     return send_file('users/internal/profile.png')
