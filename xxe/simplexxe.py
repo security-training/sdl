@@ -12,12 +12,21 @@ payload = b"""<?xml version="1.0" encoding="utf-8"?>
 &xxe;
 </foo>"""
 
+@app.route('/')
+def home():
+    return "<h1>XML Checker</h1><p>Enter your XML below:<p><form method=post action='/xml'><textarea name='xml' cols='50' rows='20'></textarea><input type=submit>"
+
 @app.route('/xml', methods=['POST'])
 def xml():
-    xml = request.get_data()
-    parser = etree.XMLParser()
-    doc = etree.fromstring(xml, parser)
-    parsed_xml = etree.tostring(doc)
-    return parsed_xml
+    try:
+        xml = request.form["xml"].encode()
+        print(xml)
+        parser = etree.XMLParser(resolve_entities=False) # resolve_entities=False
+        doc = etree.fromstring(xml, parser)
+        parsed_xml = etree.tostring(doc)
+        return parsed_xml
+    except Exception as e:
+        print(e)
+        return "This is bad XML"
 
 #https://github.com/payloadbox/xxe-injection-payload-list

