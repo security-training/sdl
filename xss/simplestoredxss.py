@@ -16,9 +16,15 @@ def add():
     try:
         name=request.form["name"]
         message=request.form["message"]
-        createuser(name, message)
         response=make_response(redirect("/"))
-        response.set_cookie('cookie', name)
+        if request.cookies.get('cookie')==None:
+            response.set_cookie('cookie', name)
+            createuser(name, message)
+        elif name==request.cookies.get('cookie'):
+            name=request.cookies.get('cookie')
+            createuser(name, message)
+        else:
+            return "cheater!"
         return response
     except:
         return "error: make sure you enter name and message"

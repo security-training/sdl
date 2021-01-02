@@ -17,7 +17,7 @@ def add():
     try:
         name=request.form["name"]
         message=request.form["message"]
-        createuser(name, message)
+        #createuser(name, message)
         response=make_response(redirect("/"))
         response.set_cookie('cookie', name)
         return response

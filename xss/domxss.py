@@ -10,5 +10,22 @@ def d():
 
 @app.route("/<q>")
 def calc(q):
-    return "<style>td {text-align: left;} .green {text-shadow: 2px 2px 5px green;}</style><h1 class='green'>Magic Numbers</h1><div id='area'></div><script>q='"+q+"'; if (Number.isNaN(parseInt(q)) || typeof(parseInt(q))!='number') { document.getElementById('area').innerHTML=unescape(q)+' is not a number';} else {document.getElementById('area').innerHTML=unescape(q)+' is a number';} </script>"
+    html = """
+    <style>td {{text-align: left;}} .green {{text-shadow: 2px 2px 5px green;}}</style>
+    <h1 class='green'>Magic Numbers</h1>
+    <div id='area'></div>
+    <img src='static/xss.jpg'>
+    <script>
+    q='{}';
+    if (!Number.isNaN(parseInt(q)) && typeof(parseInt(q))=='number' && q.match(/[^0-9]/g)==null)
+    {{
+        document.getElementById('area').innerHTML=unescape(q)+' is a number';
+    }}
+    else
+    {{
+        document.getElementById('area').innerHTML=unescape(q)+' is not a number';
+    }}
+    </script>
+    """
+    return html.format(q)
     #return "<body><script>document.body.innerHTML=eval({})</script></body>".format(urllib.parse.unquote(request.args.get('e')))

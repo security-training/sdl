@@ -16,6 +16,7 @@ def postmessage(user, message):
     try:
         #tm = jinja2.Template('{{message|e}}')
         #message=tm.render(message=message)
+        print(message)
         conn=sqlite3.connect('users.db')
         q="insert into users (username, message) values ('{}', '{}');".format(user, message)
         conn.execute(q)
@@ -79,6 +80,7 @@ def add():
         if request.cookies.get('cookie')==None:
             cookie=str(random.randint(1000, 9999))
             response.set_cookie('cookie', cookie)
+            #response.set_cookie('cookie', cookie, httponly=True)
             createuser(name, cookie)
             postmessage(name, message)
             return response
