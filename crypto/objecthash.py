@@ -31,7 +31,7 @@ html = """
 <h1>Grades
 <form><p>
 Name:<input name='name' id='grade'><p>
-Grade:<textarea readonly name='grade' id='grade'>
+Grade:<textarea readonly id='grade'>
 {}
 </textarea>
 <input type=hidden name='json' value='{}'>

@@ -9,6 +9,8 @@ auth = HTTPBasicAuth()
 
 # I don't want to put my password in github...
 
+# but maybe can be cracked... ):
+
 users = {
     "john":  '9e02d06dd535a7663c0eb74ffe3c634122a35fb93707b31702cc33a5ef0b7b31'
 }

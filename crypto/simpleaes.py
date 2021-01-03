@@ -71,7 +71,7 @@ def grades():
         input= request.args.get('state')
         decodedjson=urllib.parse.unquote(input).strip()
         if validate(bytes(decodedjson, 'utf-8')):
-            return html
+            return "Name updated<p>"+html
         else:
             return "cheater!"
     else:
