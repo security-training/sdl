@@ -9,7 +9,7 @@ auth = HTTPBasicAuth()
 app = Flask(__name__)
 
 users = {
-    "יוני": generate_password_hash("bryce"),
+    "john": generate_password_hash("bryce"),
     "moshe": generate_password_hash("moshe123")
 }
 
