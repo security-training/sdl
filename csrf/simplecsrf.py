@@ -35,6 +35,13 @@ def r():
     response=make_response(redirect("/login"))
     return response
 
+@app.route('/logout')
+@auth.login_required
+def logout():
+    logout_user()
+    response=make_response(redirect("/login"))
+    return response
+
 @app.route('/login')
 @auth.login_required
 def login():
@@ -52,4 +59,5 @@ def csrf():
 @auth.login_required
 def process():
     dest=request.form["to"]
-    return "money transferred to {}".format(dest)
+    amount=request.form["amount"]
+    return "<h2>{}$ transferred to {}".format(amount, dest)
