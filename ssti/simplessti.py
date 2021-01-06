@@ -14,7 +14,7 @@ def ssti(username):
     return t
 
 @app.route("/ssti/", methods=['POST'])
-def ssti():
+def sstipost():
     username=request.form["username"]
     decoded="Hello, "+urllib.parse.unquote(username)+", today is {{time.ctime()}}"
     t= render_template_string(decoded, time=time)
