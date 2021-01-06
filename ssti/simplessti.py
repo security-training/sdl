@@ -4,11 +4,20 @@ from flask import Flask, render_template, request, make_response, render_templat
 import html
 import urllib
 import time
+import re
 
 app = Flask(__name__)
 
 @app.route("/ssti/<username>")
 def ssti(username):
+    decoded="Hello, "+urllib.parse.unquote(username)+", today is {{time.ctime()}}"
+    t= render_template_string(decoded, time=time)
+    return t
+
+@app.route("/nossti/<username>") # filter
+def nossti(username):
+    for i in re.findall("[{}]", username):
+        username=username.strip(i)
     decoded="Hello, "+urllib.parse.unquote(username)+", today is {{time.ctime()}}"
     t= render_template_string(decoded, time=time)
     return t
