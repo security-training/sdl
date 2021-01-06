@@ -7,15 +7,15 @@ import time
 
 app = Flask(__name__)
 
-
-@app.route("/nossti/<username>")
-def nossti(username):
-    decoded="Hello, "+str(username.encode('utf-16'))+", today is {{time.ctime()}}"
+@app.route("/ssti/<username>")
+def ssti(username):
+    decoded="Hello, "+urllib.parse.unquote(username)+", today is {{time.ctime()}}"
     t= render_template_string(decoded, time=time)
     return t
 
-@app.route("/ssti/<username>")
-def ssti(username):
+@app.route("/ssti/", methods=[POST])
+def ssti():
+    username=request.form["username"]
     decoded="Hello, "+urllib.parse.unquote(username)+", today is {{time.ctime()}}"
     t= render_template_string(decoded, time=time)
     return t
