@@ -21,7 +21,7 @@ def xml():
     try:
         xml = request.form["xml"].encode()
         print(xml)
-        parser = etree.XMLParser() # resolve_entities=False
+        parser = etree.XMLParser(resolve_entities=False)
         doc = etree.fromstring(xml, parser)
         parsed_xml = etree.tostring(doc)
         return parsed_xml

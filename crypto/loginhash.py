@@ -5,6 +5,9 @@ import hashlib
 
 app = Flask(__name__)
 
+if __name__ == "__main__":
+    app.run(ssl_context=('cert.pem', 'key.pem'))
+    
 auth = HTTPBasicAuth()
 
 # I don't want to put my password in github...

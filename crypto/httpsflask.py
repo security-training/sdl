@@ -4,6 +4,9 @@
 
 #flask run --cert=cert.pem --key=key.pem
 
+import os
+
+print(os.getpid())
 from flask import Flask
 app = Flask(__name__)
 

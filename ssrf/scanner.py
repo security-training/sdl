@@ -15,7 +15,7 @@ def scan(url, num):
         pass
 
 def main():
-    url="http://localhost:5000/?url=http://192.168.56.{}"
+    url="http://localhost:5000/?url=http://192.168.1.{}"
     for num in range(255):
         time.sleep(0.1)
         threading._start_new_thread(scan, (url,num))
