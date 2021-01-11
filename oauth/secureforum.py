@@ -17,8 +17,8 @@ except Exception as e:
 app = Flask(__name__)
 
 # based on https://realpython.com/flask-google-login/
-GOOGLE_CLIENT_ID = "619014629195-1ghgoqecllpvtioa0ks73oc4giqv3p8a.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "IJcRldmBvDtjob8e7oJF84ku"
+GOOGLE_CLIENT_ID = ""
+GOOGLE_CLIENT_SECRET = ""
 GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
 
 # OAuth 2 client setup

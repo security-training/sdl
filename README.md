@@ -2,6 +2,8 @@
 
 Code examples used in SDL course. קוד ותרגילים לקורס
 
+notes.pdf חוברת הקורס בעברית 
+
 # Setup התקנה
 
 pip3 install -r requirements.txt
