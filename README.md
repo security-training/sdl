@@ -2,7 +2,7 @@
 
 Code examples used in SDL course. קוד ותרגילים לקורס
 
-notes.pdf חוברת הקורס בעברית 
+Course notes in Hebrew: notes.pdf חוברת הקורס בעברית 
 
 # Setup התקנה
 
