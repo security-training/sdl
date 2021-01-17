@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, make_response, redirect
 import sqlite3
 import random
+import os
 
 try:
+    os.system("del users.db")
     conn=sqlite3.connect('users.db')
     conn.execute("create table users(username text, cookie text);")
     conn.commit
@@ -17,14 +19,14 @@ def add():
         name=request.form["name"]
         message=request.form["message"]
         response=make_response(redirect("/"))
-        if request.cookies.get('cookie')==None:
+        if request.cookies.get('cookie') is None: # is versus ==
             response.set_cookie('cookie', name)
             postmessage(name, message)
         elif name==request.cookies.get('cookie'):
             name=request.cookies.get('cookie')
             postmessage(name, message)
         else:
-            return "cheater!"
+            return "<h2>Cheater!<p><h3>This incident will be reported."
         return response
     except:
         return "error: make sure you enter name and message"
