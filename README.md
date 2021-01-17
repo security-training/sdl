@@ -1,8 +1,11 @@
-# SDL Course Examples קורס פיתוח מאובטח והאקינג
+# SDL Course Examples
+קורס פיתוח מאובטח והאקינג
 
-Code examples used in SDL course. קוד ותרגילים לקורס
+Code examples used in SDL course
+קוד ותרגילים לקורס
 
-Course notes in Hebrew: notes.pdf חוברת הקורס בעברית 
+Course notes in Hebrew: 
+notes.pdf חוברת הקורס בעברית 
 
 # Setup התקנה
 
