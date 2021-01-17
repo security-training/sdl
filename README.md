@@ -1,5 +1,5 @@
 # SDL Course Examples
-קורס פיתוח מאובטח והאקינג
+# קורס פיתוח מאובטח והאקינג
 
 Code examples used in SDL course
 קוד ותרגילים לקורס
